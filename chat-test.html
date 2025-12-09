@@ -11,6 +11,48 @@
 <body>
 
     <script>
+        // 获取 URL 查询字符串参数的函数
+        function getQueryString(key) {
+            const params = new URLSearchParams(window.location.search);
+            return key ? params.get(key) : Object.fromEntries(params);
+        }
+
+        // 获取所有查询参数的函数
+        function getAllQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const result = {};
+            for (const [key, value] of params.entries()) {
+                result[key] = value;
+            }
+            return result;
+        }
+
+        function setUser(userID, avatar, phoneNumber, city, companyName, desc) {
+            if (!userID || userID.length <= 0) {
+                return
+            }
+            window.$chatwoot.setUser(userID, {
+                name: userID,
+                avatar_url: avatar || "",
+                phone_number: phoneNumber || "",
+                country_code: "cn",
+                identifier: userID,
+                //identifier_hash: "cbw-test001-hash",
+                city: city || "",
+                company_name: companyName || "中彩网",
+                description: desc || "中彩网的客户"
+            });
+        }
+
+
+        const userName = getQueryString("姓名") || getQueryString("vId") || getQueryString("uid") || getQueryString("id") || getQueryString("userID") || "";
+        const token = getQueryString("websiteToken") || getQueryString("webToken") || getQueryString("entId") || getQueryString("token") || "";
+        const avatar = getQueryString("avatar") || getQueryString("avatarUrl") || getQueryString("avatar_url") || "";
+        const phoneNumber = getQueryString("phone") || getQueryString("phoneNumber") || getQueryString("phone_number") || "";
+        const city = getQueryString("city") || getQueryString("cityName") || getQueryString("city_name") || "";
+        const companyName = getQueryString("company") || getQueryString("companyName") || getQueryString("company_name") || "";
+        const desc = getQueryString("desc") || getQueryString("description") || getQueryString("description") || "";
+
         (function (d, t) {
             window.chatwootSettings = { "position": "right", "type": "expanded_bubble", "launcherTitle": "联系我们" };
             var BASE_URL = "https://zcw-o0bsj.chachat.social";
@@ -20,10 +62,18 @@
             s.parentNode.insertBefore(g, s);
             g.onload = function () {
                 window.chatwootSDK.run({
-                    websiteToken: 'EUydVBigStqkpFot253msA6N',
+                    websiteToken: token || 'EUydVBigStqkpFot253msA6N',
                     baseUrl: BASE_URL
                 })
             }
+
+            window.addEventListener("chatwoot:ready", function () {
+                console.log("Chatwoot is ready to use");
+                console.log("userID=" + userName);
+                setUser(userName, avatar, phoneNumber, city, companyName, desc)
+            });
+
+
         })(document, "script");
     </script>
 </body>
