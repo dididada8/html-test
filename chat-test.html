@@ -1,27 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>中彩网-测试-客服</title>
 
 </head>
+
 <body>
 
-<script>
-    (function (d, t) {
-        var BASE_URL = "https://zcw-o0bsj.chachat.social";
-        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        g.src = BASE_URL + "/packs/js/sdk.js";
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-        g.onload = function () {
-            window.chatwootSDK.run({
-                websiteToken: 'EUydVBigStqkpFot253msA6N',
-                baseUrl: BASE_URL
-            })
-        }
-    })(document, "script");
-</script>
+    <script>
+        (function (d, t) {
+            window.chatwootSettings = { "position": "right", "type": "expanded_bubble", "launcherTitle": "联系我们" };
+            var BASE_URL = "https://zcw-o0bsj.chachat.social";
+            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            g.src = BASE_URL + "/packs/js/sdk.js";
+            g.async = true;
+            s.parentNode.insertBefore(g, s);
+            g.onload = function () {
+                window.chatwootSDK.run({
+                    websiteToken: 'EUydVBigStqkpFot253msA6N',
+                    baseUrl: BASE_URL
+                })
+            }
+        })(document, "script");
+    </script>
 </body>
+
+<style>
+    /* 移动设备样式 - iPhone 12 Pro 及类似设备 (390px - 667px) */
+    @media only screen and (max-width: 667px) {
+        .woot-widget-holder {
+            height: 100% !important;
+            width: 100% !important;
+            right: 0 !important;
+            left: 0 !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            border-radius: 0 !important;
+            max-height: 100vh !important;
+            min-height: 100vh !important;
+        }
+
+        .woot-widget-holder iframe {
+            min-height: 100% !important;
+            height: 100vh !important;
+        }
+
+        .woot-widget-bubble {
+            bottom: 20px !important;
+            right: 20px !important;
+            left: auto !important;
+        }
+
+        .woot-widget-bubble.woot-elements--left {
+            left: 20px !important;
+            right: auto !important;
+        }
+    }
+
+    /* 平板和小屏幕设备 (390px - 667px) */
+    @media only screen and (min-width: 390px) and (max-width: 667px) {
+        .woot-widget-holder {
+            border-radius: 0 !important;
+        }
+    }
+
+    /* 桌面设备样式 */
+    @media only screen and (min-width: 667px) {
+        .woot-widget-holder.woot-elements--right {
+            right: 20px;
+        }
+
+        .woot-widget-holder {
+            border-radius: 16px;
+            bottom: 104px;
+            height: calc(90% - 64px - 20px);
+            max-height: 640px !important;
+            min-height: 250px !important;
+            width: 400px !important;
+        }
+    }
+
+    /* 触摸设备优化 */
+    @media (hover: none) and (pointer: coarse) {
+        .woot-widget-bubble {
+            min-width: 64px;
+            min-height: 64px;
+        }
+    }
+</style>
 
 </html>
