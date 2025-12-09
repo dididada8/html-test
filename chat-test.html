@@ -141,6 +141,17 @@
         }
     }
 
+    /* 屏幕高度大于750px时增加元素高度（仅桌面设备） */
+    @media only screen and (min-width: 667px) and (min-height: 750px) {
+        .woot-widget-holder.woot-elements--right,
+        .woot-widget-holder.woot-elements--left,
+        .woot-widget-holder {
+            height: calc(95% - 64px - 20px) !important;
+            max-height: 800px !important;
+            min-height: 500px !important;
+        }
+    }
+
     /* 触摸设备优化 */
     @media (hover: none) and (pointer: coarse) {
         .woot-widget-bubble {
