@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中彩网-测试-客服</title>
+
+</head>
+<body>
+
+<script>
+    (function (d, t) {
+        var BASE_URL = "https://zcw-o0bsj.chachat.social";
+        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        g.src = BASE_URL + "/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
+        g.onload = function () {
+            window.chatwootSDK.run({
+                websiteToken: 'EUydVBigStqkpFot253msA6N',
+                baseUrl: BASE_URL
+            })
+        }
+    })(document, "script");
+</script>
+</body>
+
+</html>
