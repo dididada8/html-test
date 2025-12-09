@@ -120,7 +120,14 @@
     /* 桌面设备样式 */
     @media only screen and (min-width: 667px) {
         .woot-widget-holder.woot-elements--right {
-            right: 20px;
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .woot-widget-holder.woot-elements--left {
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .woot-widget-holder {
