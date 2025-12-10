@@ -72,7 +72,7 @@
         const desc = getQueryString("desc") || getQueryString("description") || getQueryString("description") || "";
 
         (function (d, t) {
-            window.chatwootSettings = { "position": "right", "type": "expanded_bubble", "launcherTitle": "联系我们" };
+            window.chatwootSettings = { "position": "right", "type": "expanded_bubble", "showPopoutButton": true, "hideMessageBubble": false, "launcherTitle": "联系我们" };
             var BASE_URL = "https://zcw-o0bsj.chachat.social";
             var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
             g.src = BASE_URL + "/packs/js/sdk.js";
@@ -89,6 +89,7 @@
                 console.log("Chatwoot is ready to use");
                 console.log("userID=" + userName);
                 setUser(userName, avatar, phoneNumber, city, companyName, desc)
+                window.$chatwoot.toggle("open"); // To open widget
             });
 
 
@@ -178,6 +179,12 @@
             min-height: 64px;
         }
     }
+
+    /* 示例 — 只是伪代码，请用实际的 class 或 selector 替换 */
+iframe.chatwoot-widget .close-button,
+iframe.chatwoot-widget .__cw_close_btn {
+  display: none !important;
+}
 </style>
 
 </html>
