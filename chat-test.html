@@ -11,6 +11,19 @@
 <body>
 
     <script>
+        var __visitorId = null;
+        const fpPromise = import('./fingerprintjs/v5.js')
+            .then(FingerprintJS => FingerprintJS.load())
+        // Get the visitor identifier when you need it.
+        fpPromise
+            .then(fp => fp.get())
+            .then(result => {
+                // This is the visitor identifier:
+                __visitorId = result.visitorId;
+                console.log("访客:" + __visitorId);
+            });
+
+
         // 获取 URL 查询字符串参数的函数
         function getQueryString(key) {
             const params = new URLSearchParams(window.location.search);
@@ -29,10 +42,15 @@
 
         function setUser(userID, avatar, phoneNumber, city, companyName, desc) {
             if (!userID || userID.length <= 0) {
-                return
+                userID = __visitorId;
+            } else {
+                userID = userID + "-" + __visitorId;
             }
+
+            console.log("set user id:" + userID);
+
             window.$chatwoot.setUser(userID, {
-                name: userID,
+                name: userID === __visitorId ? "游客" + __visitorId : userID,
                 avatar_url: avatar || "",
                 phone_number: phoneNumber || "",
                 country_code: "cn",
@@ -143,6 +161,7 @@
 
     /* 屏幕高度大于750px时增加元素高度（仅桌面设备） */
     @media only screen and (min-width: 667px) and (min-height: 750px) {
+
         .woot-widget-holder.woot-elements--right,
         .woot-widget-holder.woot-elements--left,
         .woot-widget-holder {
